@@ -1,0 +1,21 @@
+{% extends 'book/base.html' %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block content %}
+
+    <h3>Authors Book Details</h3>
+    <div class="d-flex d-flex-inline"><span class="pe-2">Authors name:</span> <h5>{{ author.name|title }}</h5></div>
+    <hr>
+        {% for book in author.books.all %}
+        <div class="small">Book ID: {{ book.id }}</div>
+        <div>Title: {{ book.title }}</div>
+        <hr>
+        {% endfor %}
+    <p>
+        <a href="{% url 'book:author-books-edit' author.id %}" role="button" class="btn btn-primary w-100 mb-2">Edit Authors Books</a>
+        <a href="{% url 'book:authors' %}" role="button" class="btn btn-secondary w-100">Back to Authors</a>
+    </p>
+
+
+{% endblock content %}
